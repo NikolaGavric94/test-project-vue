@@ -37,7 +37,21 @@ const store = new Vuex.Store({
         login: (context, val) => {
             return axios.get('sanctum/csrf-cookie').then(() => {
                 return axios.post('api/tokens/create', val).then((res) => {
-                    return res;
+                    return res.data;
+                });
+            });
+        },
+        register: (context, val) => {
+            return axios.get('sanctum/csrf-cookie').then(() => {
+                return axios.post('api/register', val).then((res) => {
+                    return res.data;
+                });
+            });
+        },
+        createTask: (context, val) => {
+            return axios.get('sanctum/csrf-cookie').then(() => {
+                return axios.post('api/task/create', val).then((res) => {
+                    return res.data;
                 });
             });
         }

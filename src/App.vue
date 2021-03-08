@@ -4,6 +4,7 @@
       <router-link v-if="!$store.getters.isLoggedIn" to="/">Login</router-link> |
       <router-link v-if="!$store.getters.isLoggedIn" to="/registration">Register</router-link> |
       <router-link v-if="$store.getters.isLoggedIn" to="/dashboard">Dashboard</router-link> |
+      <router-link v-if="$store.getters.isLoggedIn" to="/task/create">Create task</router-link> |
       <b-link v-if="$store.getters.isLoggedIn" @click="$store.dispatch('clearToken') && $router.push({name: 'Home'})" href="#">Logout</b-link>
     </div>
     <router-view/>

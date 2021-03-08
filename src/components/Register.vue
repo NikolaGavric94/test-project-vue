@@ -17,6 +17,7 @@ export default {
   },
   methods: {
     onSubmit(form) {
+      console.log(form);
       this.$store.dispatch('register', form).then((res) => {
         this.$store.dispatch('changeToken', {token: res.data.token.plainTextToken, role: res.data.role}).then(() => {
           this.$router.push({name: 'Dashboard'});

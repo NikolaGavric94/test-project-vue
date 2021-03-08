@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import store from '../store';
 import Registration from "@/views/Registration";
+import {ROLE_ADMIN} from "@/constants";
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,18 @@ const routes = [
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/members/Dashboard.vue'),
     beforeEnter: (to, from, next) => {
       if (store.getters.isLoggedIn) next();
+      else next('/');
+    }
+  },
+  {
+    path: '/task/create',
+    name: 'Create task',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "create-task" */ '../views/members/CreateTask.vue'),
+    beforeEnter: (to, from, next) => {
+      if (store.getters.isLoggedIn && store.state.role === ROLE_ADMIN) next();
       else next('/');
     }
   }

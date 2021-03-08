@@ -16,7 +16,7 @@ ax.isCancel = axios.isCancel;
 ax.interceptors.request.use(
     request => {
         if (store.getters.isLoggedIn) {
-            request.headers['Authorization'] = `Bearer: ${store.state.token}`;
+            request.headers['Authorization'] = `Bearer ${store.state.token}`;
         } else {
             delete request.headers['Authorization'];
         }
